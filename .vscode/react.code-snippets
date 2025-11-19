@@ -1,0 +1,38 @@
+{
+  "rafc (React Arrow Function Component)": {
+    "prefix": "rafc",
+    "body": [
+      "import React from 'react';",
+      "",
+      "const ${1:ComponentName} = (props) => {",
+      "  return (",
+      "    <>",
+      "      $0",
+      "    </>",
+      "  );",
+      "};",
+      "",
+      "export default ${1:ComponentName};"
+    ],
+    "description": "React Arrow Function Component (JSX)"
+  },
+  "rafc-ts (React Arrow Function Component - TS)": {
+    "prefix": "rafc",
+    "body": [
+      "import React from 'react';",
+      "",
+      "type ${1:Props} = {};",
+      "",
+      "const ${2:ComponentName}: React.FC<${1:Props}> = (props) => {",
+      "  return (",
+      "    <>",
+      "      $0",
+      "    </>",
+      "  );",
+      "};",
+      "",
+      "export default ${2:ComponentName};"
+    ],
+    "description": "React Arrow Function Component (TypeScript)"
+  }
+}

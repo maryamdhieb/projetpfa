@@ -1,0 +1,116 @@
+/* --- Slider principal --- */
+.hero-section {
+  width: 100%;
+  height: 420px;
+  margin-top: 22px;
+}
+
+.slide-bg {
+height: 513px;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  padding-left: 80px;
+  color: #fff;
+  position: relative;
+}
+
+.marquee-title {
+ padding-left: 110px;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #3b3737;
+  margin-bottom: 1.5rem;
+  letter-spacing: 2px;
+  position: relative;
+   
+}
+
+
+/* Texte centré à gauche */
+.slide-content {
+  max-width: 45%;
+  z-index: 2;
+}
+
+.slide-content h4 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  opacity: 0.9;
+}
+
+.slide-content h1 {
+  font-size: 36px;
+  font-weight: bold;
+  line-height: 1.3;
+}
+
+/* Pagination Swiper */
+.swiper-pagination-bullet {
+  background: white !important;
+  opacity: 0.6;
+}
+.swiper-pagination-bullet-active {
+  background: #fff !important;
+  opacity: 1;
+}
+
+/* 🌟 Titre de la section marques */
+.marquee-title {
+   margin-top: 15px;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-style: normal;
+  line-height: 1.15;
+  text-transform: capitalize;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+  word-spacing: 2px;
+  text-align: left;
+  font-size: 2rem;
+  font-weight: 700;
+  color: rgb(85, 80, 80);
+  margin-bottom: 1.5rem;
+ 
+  letter-spacing: 2px;
+  position: relative;
+}
+
+
+
+/* 🖼️ Zone des logos défilants */
+.wd-marquee {
+  margin-top: -87px;
+  overflow: hidden;
+  background-color: white;
+  padding: 3px 0;
+  border-top: 2px solid #eee;
+}
+
+.wd-marquee-content {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  animation: scroll 25s linear infinite;
+}
+
+.wd-marquee-content img {
+  height: 60px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.wd-marquee-content img:hover {
+  transform: scale(1.1);
+}
+
+/* 🌀 Animation défilante */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
