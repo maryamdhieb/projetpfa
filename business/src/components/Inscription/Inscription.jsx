@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../LoginSignUp/LoginSignUp.css';
+import './Inscription.css';
 
 /*
   Composant LoginSignIn
@@ -8,13 +8,29 @@ import '../LoginSignUp/LoginSignUp.css';
   - Le composant est purement UI ici; la logique d'envoi (fetch/axios) sera ajoutée
     lors de l'intégration avec votre backend (ex: POST /api/register)
 */
-const LoginSignIn = (props) => {
+const Inscription = (props) => {
   // État local pour afficher/masquer le mot de passe
   const [showPassword, setShowPassword] = useState(false);
-
+  const[name , setName]= useState("");
+  const[email , setEmail]= useState("");
+  const[password , setPassword]= useState("");
+  const[message , setMessage]= useState("");
   // Bascule l'état showPassword lorsque l'utilisateur clique sur l'icône 'œil'
   const togglePassword = () => setShowPassword(s => !s);
-
+  const handleRegister = (e) => {
+    e.preventDefault();
+    if (!name || !email || !password) {
+      setMessage("Veuillez remplir tous les champs.");
+      return;
+    }
+    //enregistrer l'utilisateur dans la session storage
+    const userData = { name, email, password };
+    sessionStorage.setItem("user", JSON.stringify(userData));
+    setMessage("Inscription réussie ! Vous pouvez maintenant vous connecter.");
+    setTimeout(() => {
+      window.location.href = "/Connexion";
+    });
+  };
   // Rendu du composant
   return (
     <div className="ls-page">
@@ -30,19 +46,23 @@ const LoginSignIn = (props) => {
           <h2 className="ls-title">Inscription</h2>
           <p className="ls-subtitle">Créez un compte pour accéder à tous les services</p>
 
-          {/* Le formulaire : pour l'instant il n'envoie rien, on peut ajouter
-              un handler onSubmit pour appeler l'API (ex : fetch('/api/register')) */}
-          <form className="ls-form">
+          {message && (
+            <p style={{ color: message.includes("succès") ? "green" : "red" }}>
+              {message}
+            </p>
+          )}
+
+          <form className="ls-form" onSubmit={handleRegister}>
             {/* Nom complet */}
             <label className="ls-label">
               <span className="ls-icon">👤</span>
-              <input className="ls-input" type="text" placeholder="Nom complet" />
+              <input className="ls-input" type="text" placeholder="Nom complet" onChange={(e)=> setName(e.target.value)}/>
             </label>
 
             {/* Adresse e-mail */}
             <label className="ls-label">
               <span className="ls-icon">📧</span>
-              <input className="ls-input" type="email" placeholder="Adresse e-mail" />
+              <input className="ls-input" type="email" placeholder="Adresse e-mail" onChange={(e) => setEmail(e.target.value)} />
             </label>
 
             {/* Mot de passe avec toggle afficher/masquer */}
@@ -54,6 +74,7 @@ const LoginSignIn = (props) => {
                   className="ls-input"
                   type={showPassword ? 'text' : 'password'}
                   placeholder="Mot de passe"
+                  onChange={(e) => setPassword(e.target.value)}
                 />
 
                 {/* Bouton qui ne soumet pas le formulaire (type="button")
@@ -84,14 +105,14 @@ const LoginSignIn = (props) => {
             <button type="submit" className="ls-button">Enregistrer</button>
 
             {/* Lien vers la page de connexion si l'utilisateur a déjà un compte */}
-            <a className="ls-create" href="/login">Vous avez déjà un compte ? <strong>Connexion</strong></a>
+            <a className="ls-create" href="/Connexion">Vous avez déjà un compte ? <strong>Connexion</strong></a>
           </form>
 
           {/* Boutons sociaux (UI seulement) */}
           <div className="ls-socials">
-            <button className="social facebook">f</button>
-            <button className="social twitter">t</button>
-            <button className="social google">G</button>
+            <button className="social facebook"><i className="fab fa-facebook-f"></i></button>
+            <button className="social twitter"><i className="fab fa-twitter"></i></button>
+            <button className="social google"><i className="fab fa-google"></i></button>
           </div>
         </div>
       </div>
@@ -99,4 +120,4 @@ const LoginSignIn = (props) => {
   );
 };
 
-export default LoginSignIn;
+export default Inscription;

@@ -1,4 +1,4 @@
-import React from "react";
+import React , { useEffect }  from "react";
 import "./Home.css";
 import NavBar from "../NavBar/NavBar";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -28,6 +28,12 @@ const images = [
 ];
 
 const Home = () => {
+  useEffect(() => {
+  if (sessionStorage.getItem("isLogged") !== "true") {
+    window.location.href = "/Connexion";
+  }
+}, []);
+
   return (
     <div className="home-container">
       <NavBar />

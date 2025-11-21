@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Product.css";
+
 const Products = () => {
   const [selectedCategory, setSelectedCategory] = useState("Sécurité électronique");
   const [openCategory, setOpenCategory] = useState("Sécurité électronique");
@@ -40,7 +41,7 @@ const Products = () => {
       category: "Sécurité électronique",
       Desc:"Le Kit Alarme HIKVISION AX PRO DS-PWA64-KIT-WE est un système de sécurité sans fil intégrant les dernières technologies de Hikvision.", 
       brand: "Hikvision",
-      image: "./assets/SecuriteElectronique/alarme/KitAlarmesansfilAX-Pro.png",
+      image: "/SecuriteElectronique/alarme/KitAlarmesansfilAX-Pro.png",
       subCategories: ["Alarmes antivol"]
     },
     {
@@ -50,7 +51,7 @@ const Products = () => {
       category: "Sécurité électronique",
       Desc:"Contact à encastrer blanc pour porte blindée, diamètre 20 mm, 4 fils de 30 cm, dimensions 29×20 mm, conforme EN50131-2-6 Grade 2 Class IV.",
       brand: "VIMO",
-      image: "./assets/SecuriteElectronique/alarme/Contactaencastrerblancpourporteblindee.png",
+      image: "/SecuriteElectronique/alarme/Contactaencastrerblancpourporteblindee.png",
       subCategories: ["Alarmes antivol"]
     },
     {
@@ -60,7 +61,7 @@ const Products = () => {
       category: "Sécurité électronique",
       Desc:"La Télécommande Alarme permet d’armer et de désarmer en mode séjour ou absence et de verrouiller/déverrouiller le clavier. Configurable à distance, elle offre une transmission fiable et une installation facile. Disponible en modèle DS-PKF1-WB.", 
       brand: "Hikvision",
-      image: "./assets/SecuriteElectronique/alarme/TelecommandeAlarme–DS-PKF1-WB.png",
+      image: "/SecuriteElectronique/alarme/TelecommandeAlarme.png",
       subCategories: ["Alarmes antivol"]
     },
     {
@@ -70,7 +71,7 @@ const Products = () => {
       category: "Sécurité électronique",
       Desc:"Détecteur extérieur 10m/90° avec triple technologie (2 infrarouges + 1 hyperfréquence), protection contre le masquage et l’approche, ajustement à la température, immunité aux animaux, et certification IP54.", 
       brand: "EEA",
-      image: "./assets/SecuriteElectronique/alarme/Detecteurexterieur10m90tripletechnologie.png",
+      image: "./SecuriteElectronique/alarme/Detecteurexterieur10m90tripletechnologie.png",
       subCategories: ["Alarmes antivol"]
     },
     {
@@ -80,7 +81,7 @@ const Products = () => {
       category: "Sécurité électronique",
       Desc:"Détecteur Pet Immune câblé pour intérieur avec technologie infrarouge, portée 15m, compensation de température, protection contre la lumière blanche, compteur d’impulsions et protection anti-ouverture. Installation à 2,2m. Dimensions: 96x60x44mm. Grade 3 Classe II.",  
       brand: "INIM",
-      image: "./assets/SecuriteElectronique/alarme/DetecteurPetImmunecablepourinterieuravectechnologieinfrarouge.png",
+      image: "/SecuriteElectronique/alarme/DetecteurPetImmunecablepourinterieuravectechnologieinfrarouge.png",
       subCategories: ["Alarmes antivol"]
     },
     {
@@ -90,7 +91,7 @@ const Products = () => {
       category: "Sécurité électronique",
       Desc:"Détecteur infrarouge intérieur avec lentille tournante. Immunité aux animaux, haute performance avec lentille sphérique et logique SMDA. Portée jusqu’à 18 m en mode couloir. Indicateur LED visible. Installation à 2-3 m. Grade 2. Sensibilité de 1.6°C à 0.6 m/s. Modèle FLX-S-DT-X8. Dimensions H: 130 mm, L: 62 mm, l: 56 mm. Alimentation 12 mA à 12 V DC.", 
       brand: "OPTEX",
-      image: "./assets/SecuriteElectronique/alarme/DetecteurInfrarougeinterieuraveclentilletournante.png",
+      image: "/SecuriteElectronique/alarme/DetecteurInfrarougeinterieuraveclentilletournante.png",
       subCategories: ["Alarmes antivol"]
     },
     {
@@ -100,7 +101,7 @@ const Products = () => {
       category: "Sécurité électronique",
       Desc:"Détecteur extérieur linéaire IR avec 4 pyroéléments, portée de 12 m de chaque côté. Fonctionnement indépendant, immunité environnementale et aux petits animaux. Indice de protection IP55, détection gauche/droite indépendante, hauteur d’installation de 0.8 à 1.2 m.", 
       brand: "OPTEX",
-      image: "./assets/SecuriteElectronique/alarme/DetecteurexterieurlineaireIR.png",
+      image: "/SecuriteElectronique/alarme/DetecteurexterieurlineaireIR.png",
       subCategories: ["Alarmes antivol"]
     },
     {
@@ -110,7 +111,7 @@ const Products = () => {
       category: "Sécurité électronique",
       Desc:"Détecteur bivolumétrique avec technologie infrarouge et hyperfréquence. Portée de 15 m, angle de 90°, 18 zones-4 plans, anti-masking, fonction MEMO, norme EN 50131-2-2 GRADE 2 CLASSE II.",
       brand: "EEA",
-      image: "./assets/SecuriteElectronique/alarme/Detecteurbivolumetrique–infrarougeethyperfreqence.png",
+      image: "/SecuriteElectronique/alarme/Detecteurbivolumetrique.png",
       subCategories: ["Alarmes antivol"]
     }
   ];
@@ -140,7 +141,28 @@ const Products = () => {
   const handleSubCategoryClick = (sub) => {
     setSelectedSubCategory(sub);
   };
+  const  [selectedProduct, setSelectedProduct] = useState(null);
+  const [cart, setCart] = useState(() => {
+    const saved = sessionStorage.getItem("cart");
+    return saved ? JSON.parse(saved) : [];
+  });
 
+    // Charger le panier depuis sessionStorage au démarrage
+    useEffect(() => {
+      const storedCart = sessionStorage.getItem("cart");
+      if (storedCart) {
+        setCart(JSON.parse(storedCart));
+      }
+    }, []);
+
+    // Ajouter un produit au panier
+    const addToCart = (product) => {
+      const updatedCart = [...cart, product];
+      setCart(updatedCart);
+      sessionStorage.setItem("cart", JSON.stringify(updatedCart));
+      // Mettre aussi à jour le compteur dans le sessionStorage
+      sessionStorage.setItem("cartCount", updatedCart.length);
+    };
   return (
     <div className="products-page">
 
@@ -205,20 +227,61 @@ const Products = () => {
                 src={p.image}
                 alt={p.name}
                 style={{
-                  width: "120px",
-                  height: "120px",
-                  objectFit: "cover",
-                  borderRadius: "8px"
+                  width: "267px",
+                  height: "244px",
+                  borderRadius: "21px"
                 }}
               />
-
+                
               <h3>{p.name}</h3>
-              <p className="desc">{p.Desc}</p>
-              <p className="brand">Marque: {p.brand}</p>
               <p className="price">{p.price} <span>(HT)</span></p>
+              <div className="product-actions">
+
+              <button className="cart-animated"
+                 title = "Ajouter au panier"
+                 onClick={() => addToCart(p)}
+                  >
+                <i className="fas fa-cart-plus"></i>
+              </button>
+              <button 
+              className="icon-circle view-btn"
+              onClick={() => setSelectedProduct(p)}
+              title = "Voir plus "
+            >
+              <i className="fas fa-chevron-down"></i> 
+            </button>
+
+            </div>
             </div>
           ))}
         </div>
+        {selectedProduct && (
+          <div className="modal-overlay" onClick={() => setSelectedProduct(null)}>
+            <div className="mymodal-content" onClick={(e) => e.stopPropagation()}>
+              
+              <button className="close-btn" onClick={() => setSelectedProduct(null)}>
+                ×
+              </button>
+
+              <img 
+                src={selectedProduct.image} 
+                alt={selectedProduct.name}
+                className="modal-image"
+              />
+
+              <h2>{selectedProduct.name}</h2>
+              <p><strong>Marque :</strong> {selectedProduct.brand}</p>
+              <p><strong>Prix :</strong> {selectedProduct.price}</p>
+              <p className="modal-desc">{selectedProduct.Desc}</p>
+
+               <button className="cart-animated">
+                <i className="fas fa-cart-plus"></i>
+              </button>
+
+            </div>
+          </div>
+        )}
+
       </main>
 
     </div>

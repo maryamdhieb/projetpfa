@@ -2,7 +2,7 @@
 .hero-section {
   width: 100%;
   height: 420px;
-  margin-top: 22px;
+  margin-top: 86px;
 }
 
 .slide-bg {
@@ -81,7 +81,7 @@ height: 513px;
 
 /* 🖼️ Zone des logos défilants */
 .wd-marquee {
-  margin-top: -87px;
+  margin-top: 78px;
   overflow: hidden;
   background-color: white;
   padding: 3px 0;

@@ -180,3 +180,178 @@
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   }
 }
+.cart-animated {
+  background: transparent;
+   color: #ff651e;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.cart-animated:hover {
+  transform: scale(1.2) rotate(-5deg);
+  color: #ff651e;
+}
+/* --- MODAL OVERLAY --- */
+/* --- MODAL OVERLAY (fond sombre) --- */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  animation: fadeIn 0.3s ease;
+}
+
+/* --- CONTENU DU MODAL --- */
+.mymodal-content {
+  background: #ffffff;
+  width: 657px;
+  max-width: 90%;
+  border-radius: 18px;
+  padding: 25px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+  animation: slideUp 0.35s ease;
+  position: relative;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Image du modal */
+.modal-image {
+  width: 100%;
+  height: 260px;
+  object-fit: contain;
+  border-radius: 12px;
+  margin-bottom: 15px;
+}
+
+/* Titre */
+.modal-content h2 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+/* Description */
+.modal-desc {
+  font-size: 14px;
+  color: #444;
+  line-height: 1.6;
+  margin-top: 10px;
+  text-align: justify;
+}
+
+/* Bouton fermer (X) */
+.close-btn {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  background: #f1f1f1;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 18px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.close-btn:hover {
+  background: #dcdcdc;
+}
+
+/* Bouton panier dans modal */
+.modal-content .cart-animated {
+  margin-top: 15px;
+  background: #ff651e;
+  color: #fff;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.25s;
+}
+
+.modal-content .cart-animated:hover {
+  background: #ff651e;
+}
+
+/* --- ANIMATIONS --- */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+
+.product-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+  justify-content: center;
+
+}
+
+/* Style commun aux icônes circulaires */
+.icon-circle {
+  width: 34px;
+  height: 35px;
+  border-radius: 53%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+/* Icône “Voir plus” */
+.view-btn {
+  background-color: #ff651e; /* jaune œil */
+  color: white;
+}
+
+.view-btn:hover {
+  background-color: #ff651e;
+  transform: scale(1.15) rotate(-5deg);
+}
+
+/* Icône panier */
+.cart-btn {
+  background-color: #ff651e; /* bleu panier */
+  color: white;
+}
+
+.cart-btn:hover {
+  background-color: #ff651e;
+  transform: scale(1.15) rotate(5deg);
+}
+
+/* Optionnel : ombre plus douce au survol */
+.icon-circle:hover {
+  box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+}
+
+
+
